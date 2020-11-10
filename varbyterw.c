@@ -19,7 +19,7 @@ int wDataToChar(void* ipt, char* dst, int b, int e){
   */
   
   /*
-    I could be wrong but I'm pretty sure gcc (or at least the version that I'm using) stores variables as big-endian
+    I could be wrong but I'm pretty sure gcc (or at least the version that I'm using) stores variables as little-endian
     I came to this conclusion because I tested out the following code:
     
     int main(){
