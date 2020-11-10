@@ -1,0 +1,28 @@
+File IO ++
+"fileiopp"
+M. Yamanaka
+email: myamanaka@live.com
+website: http://www.csmyamanaka.com
+License: MIT (See included "LICENSE" file for details)
+
+Version 0.01 (alpha)
+
+Description:
+============
+
+
+Installation:
+=============
+
+
+Usage:
+======
+The intended usage of this software is to serve as a more sophisticated file interpreting utility for other projects.
+For this reason, it's probably best to compile this software into a shared object file, a static library file or just a local object file.
+The included make-file "Makefile" has provisions for the shared object and local object compilations.
+The "tester" argument serves as an example for how one could compile their own project using this software once it has been made into an object file.
+
+Known Issues:
+=============
+I don't know why but for some reason, for bitmap files, when the number of channels is set to 1, weird unexpected stuff happens.
+Will debug soon but for now, it seems to be working for the most part for normal RGB images where the number of channels is 3.
