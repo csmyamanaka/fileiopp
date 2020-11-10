@@ -37,8 +37,6 @@ int wDataToChar(void* ipt, char* dst, int b, int e){
     If it helps, I tested this on Void Linux using GCC 9.3.0
   */
   
-  if(e != 0 && e != 1) return -1;
-  
   /*
     Assuming that the variables are indeed stored in little-endian format,
     if match the indices as the bytes are being written,
@@ -46,12 +44,15 @@ int wDataToChar(void* ipt, char* dst, int b, int e){
     If one of the indices is reversed, the result should be big-endian.
 
     The for-loop below may look a little convoluted but it should handle both cases:
-    i.e. when "e" = 0, "i" and "j" should match whereas "i" would count up from 0 to "b" - 1
-    and "j" would count down from "b" - 1 to 0 when "e" = 1.
+    i.e. when e = 0, thereby making (e != 0) = 0, i and j should match
+    whereas i would count up from 0 to b - 1 and j would count down
+    from b - 1 to 0 when e = 1 since it would make (e != 0) = 1.
     It saves me from having to write two for loops or an if statement in the loop
     thereby making the code shorter suckless style
   */
-  for(int i = 0, j = (b - 1)*e; i < b; i++, j += 1 - 2*e) dst[i] = *((char*)ipt + j);
+
+  for(int i = 0, j = (b - 1)*(e != 0); i < b; i++, j += 1 - 2*(e != 0)) dst[i] = *((char*)ipt + j);
+  
   return 0;
 }
 
@@ -63,8 +64,7 @@ int rDataFromChar(char* ipt, void* dst, int b, int e){
     e ... endian-ness, 0 for little-endian and 1 for big-endian
   */
   
-  if(e != 0 && e != 1) return -1;
-  for(int i = 0, j = (b - 1)*e; i < b; i++, j += 1 - 2*e) *((char*)dst + i) = ipt[i];
+  for(int i = 0, j = (b - 1)*(e != 0); i < b; i++, j += 1 - 2*(e != 0)) *((char*)dst + i) = ipt[j];
   return 0;
 }
 

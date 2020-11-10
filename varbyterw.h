@@ -21,10 +21,7 @@
     char* ... destination char array
     int   ... number of bytes
     int   ... endian-ness, 0 for little-endian, 1 for big-endian
-  The return values are 0 or -1, where -1 means something definitely went wrong.
-  Be warned that a return value of 0 does not necessarily mean that everything went smoothly.
-  This is C after all.
-
+  The return value is 0 but eventually, I would like to implement error codes.
 */
 int wDataToChar(void*, char*, int, int);
 
@@ -37,7 +34,7 @@ int wDataToChar(void*, char*, int, int);
     void*   ... destination variable
     int   ... number of bytes to interpret
     int   ... endian-ness, 0 for little, 1 for big
-  A return value of -1 indicates a definite error but 0 does not indicate that there was no error.
+  A return value is also tentatively 0 but likewise with the aforementioned plan.
 */
 int rDataFromChar(char*, void*, int, int);
 
